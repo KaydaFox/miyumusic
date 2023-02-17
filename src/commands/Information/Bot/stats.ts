@@ -62,7 +62,7 @@ export class StatsCommand extends Command {
 				{
 					name: 'Bot',
 					value: `**JS:** v${version}\n**Runtime:** ${process.version}\n**Uptime:** <t:${Math.round(
-						client.readyTimestamp / 1000
+						client.readyTimestamp || Date.now() / 1000
 					)}:R>\n**CPU Usage:** ${botCpuUsage}%`,
 					inline: true
 				},
