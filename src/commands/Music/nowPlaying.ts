@@ -48,6 +48,7 @@ export class NowPlayingCommand extends Command {
 							track.length || 100
 						)}`
 					)
+					.setColor(this.container.embedColor)
 			]
 		});
 	}
