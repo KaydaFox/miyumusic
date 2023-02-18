@@ -41,14 +41,18 @@ export class StatsCommand extends Command {
 	}
 
 	private async sendStats(interactionOrMessage: Message | Command.ChatInputCommandInteraction, guild: Guild | null = null) {
-		const { client } = this.container;
+		const { client, kazagumo } = this.container;
 		const [totalGuildCount, totalMemberCount] = await this.fetchUsersAndGuils();
 
 		const shardId = guild ? guild.shardId : 0;
 		const clusterId = getInfo().CLUSTER;
 		const totalShards = getInfo().TOTAL_SHARDS;
 		const totalClusters = getInfo().CLUSTER_COUNT;
+		const player = kazagumo.players.get(interactionOrMessage.guildId as string) ?? null;
+		const voiceConnections = 1;
+
 		const botCpuUsage = Math.round(process.cpuUsage().user / 1024 / 1024);
+		const nodeCpuUsage = Math.round(player?.shoukaku.node.stats?.cpu.systemLoad || 10000 / 1024 / 1024) ?? 0;
 
 		const embed = new EmbedBuilder()
 			.setTitle('Bot Stats')
@@ -56,19 +60,35 @@ export class StatsCommand extends Command {
 			.addFields(
 				{
 					name: 'General',
-					value: `**Servers:** ${totalGuildCount}\n**Users:** ${totalMemberCount}`,
+					value: `**Servers:** ${totalGuildCount}\n**Users:** ${totalMemberCount}\n**Voice:** ${voiceConnections}`,
 					inline: true
 				},
 				{
 					name: 'Bot',
-					value: `**JS:** v${version}\n**Runtime:** ${process.version}\n**Uptime:** <t:${Math.round(
-						client.readyTimestamp || Date.now() / 1000
-					)}:R>\n**CPU Usage:** ${botCpuUsage}%`,
+					value: `**JS:** v${version}\n**Runtime:** ${process.version}\n**Uptime:** <t:${Math.round(client.readyTimestamp / 1000)}:R>`,
 					inline: true
 				},
 				{
-					name: 'Other',
-					value: `**Shard:** ${shardId}/${totalShards}\n**Cluster:** ${clusterId}/${totalClusters}`
+					name: 'CPU',
+					value: `**CPU:** ${botCpuUsage}%\n**Node:** ${nodeCpuUsage}%`,
+					inline: true
+				},
+				{
+					name: 'Memory',
+					value: `**Memory Usage:** ${Math.round(process.memoryUsage().heapUsed / 1024 / 1024)}MB\n**Memory Limit:** ${Math.round(
+						process.memoryUsage().heapTotal / 1024 / 1024
+					)}MB`,
+					inline: true
+				},
+				{
+					name: 'Shards',
+					value: `**Shard ID:** ${shardId}\n**Shard Count:** ${totalShards}`,
+					inline: true
+				},
+				{
+					name: 'Clusters',
+					value: `**Cluster ID:** ${clusterId}\n**Cluster Count:** ${totalClusters}`,
+					inline: true
 				}
 			)
 			.setColor(process.env.EMBED_COLOUR as Discord.ColorResolvable)
