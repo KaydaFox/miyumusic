@@ -2,7 +2,8 @@ import { PrismaClient } from '@prisma/client';
 import { container, LogLevel, SapphireClient } from '@sapphire/framework';
 import { ClusterClient, getInfo } from 'discord-hybrid-sharding';
 import type { Kazagumo } from 'kazagumo';
-import { GatewayIntentBits, Partials } from 'discord.js';
+import { ColorResolvable, GatewayIntentBits, Partials } from 'discord.js';
+import type Genius from 'genius-lyrics';
 
 export class MiyuClient extends SapphireClient {
 	public constructor() {
@@ -66,5 +67,7 @@ declare module '@sapphire/pieces' {
 	interface Container {
 		db: PrismaClient;
 		kazagumo: Kazagumo;
+		embedColor: ColorResolvable;
+		lyrics: Genius.Client;
 	}
 }

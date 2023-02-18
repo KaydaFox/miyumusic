@@ -23,6 +23,7 @@
 		"colorette": "^2.0.19",
 		"discord-hybrid-sharding": "^2.1.0",
 		"discord.js": "^14.7.1",
+		"genius-lyrics": "^4.4.3",
 		"kazagumo": "^2.3.2",
 		"kazagumo-spotify": "^1.2.0"
 	},
