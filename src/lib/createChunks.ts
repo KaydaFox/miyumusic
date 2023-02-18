@@ -1,17 +1,9 @@
-// export default function createChunks(arr: any[], chunkSize: number) {
-// 	const chunks = [];
-// 	for (let i = 0; i < arr.length; i += chunkSize) {
-// 		chunks.push(arr.slice(i, i + chunkSize));
-// 	}
-// 	return chunks;
-// }
-
-export default function createChunks(array: any[], size: number) {
-	const chunked_arr = [];
+export default function createChunks<T>(array: T[], size: number): T[][] {
+	const chunks: T[][] = [];
 	let index = 0;
 	while (index < array.length) {
-		chunked_arr.push(array.slice(index, size + index));
+		chunks.push(array.slice(index, size + index));
 		index += size;
 	}
-	return chunked_arr;
+	return chunks;
 }
