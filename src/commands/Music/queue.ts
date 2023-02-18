@@ -32,6 +32,8 @@ export class QueueCommand extends Command {
 		const currentTrack = queue.current;
 		const previousTrack = queue.previous;
 
+		let totalLength = ((queue.current?.length || 0) - player.position || 0) + queue.durationLength;
+
 		if (!queue.length)
 			return interaction.reply({
 				embeds: [
@@ -39,9 +41,9 @@ export class QueueCommand extends Command {
 						.setTitle('Queue')
 						.setDescription(
 							`${previousTrack ? `**Previously played:**\n${previousTrack.title} by ${previousTrack.author}` : ''}\n
-              ${currentTrack ? `**Currently playing:**\n${currentTrack.title} by ${currentTrack.author}` : 'No song is currently playing'}\n`
+		          ${currentTrack ? `**Currently playing:**\n${currentTrack.title} by ${currentTrack.author}` : 'No song is currently playing'}\n`
 						)
-						.setFooter({ text: `End of queue` })
+						.setFooter({ text: `End of queue. Time left: \`${formatTime(totalLength)}\`` })
 						.setColor(process.env.EMBED_COLOUR as ColorResolvable)
 				]
 			});
@@ -55,11 +57,6 @@ export class QueueCommand extends Command {
 					.setColor(process.env.EMBED_COLOUR as ColorResolvable)
 			],
 			fetchReply: true
-		});
-
-		let totalLength = queue.current?.length || 0;
-		queue.forEach((track) => {
-			totalLength += track.length || 0;
 		});
 
 		const mappedQueue = queue.map((track, index) => {
