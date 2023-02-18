@@ -46,6 +46,18 @@ const kazagumo = new Kazagumo(
 	}
 );
 
+kazagumo.shoukaku.on('ready', (name) => console.log(`Lavalink ${name} is ready`));
+
+kazagumo.shoukaku.on('error', (name, error) => console.warn(`Lavalink ${name} encountered an error: \n ${error}`));
+
+kazagumo.shoukaku.on('disconnect', (name, players, moved) => {
+	if (moved) return;
+	players.map((player) => player.connection.disconnect());
+	console.warn(`Lavalink ${name}: Disconnected`);
+});
+
+kazagumo.shoukaku.on('close', (name, code, reason) => console.warn(`Lavalink ${name}: Closed, Code ${code}, Reason ${reason || 'No reason'}`));
+
 const main = async () => {
 	try {
 		container.embedColor = process.env.EMBED_COLOR as ColorResolvable;
