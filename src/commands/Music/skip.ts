@@ -38,7 +38,7 @@ export class SkipCommand extends Command {
 			.setTitle('Skip')
 			.setDescription(`Skipped ${track.title} by ${track.author}`)
 			.setFooter({ text: `Requested by ${interaction.user.tag}`, iconURL: interaction.user.avatarURL() ?? undefined })
-			.setColor(process.env.EMBED_COLOUR);
+			.setColor(this.container.embedColor);
 
 		return interaction.reply({ embeds: [embed] });
 	}

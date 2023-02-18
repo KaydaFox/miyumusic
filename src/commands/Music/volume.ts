@@ -41,7 +41,7 @@ export class VolumeCommand extends Command {
 			.setTitle('Volume')
 			.setDescription(`The current volume is ${player.volume * 100}%`)
 			.setFooter({ text: `Requested by ${interaction.user.tag}`, iconURL: interaction.user.avatarURL() ?? undefined })
-			.setColor(process.env.EMBED_COLOUR);
+			.setColor(this.container.embedColor);
 
 		return interaction.reply({ embeds: [embed] });
 	}
@@ -61,7 +61,7 @@ export class VolumeCommand extends Command {
 			.setTitle('Volume')
 			.setDescription(`The current volume is ${player.volume * 100}%`)
 			.setFooter({ text: `Requested by ${interaction.user.tag}`, iconURL: interaction.user.avatarURL() ?? undefined })
-			.setColor(process.env.EMBED_COLOUR);
+			.setColor(this.container.embedColor);
 
 		return interaction.reply({ embeds: [embed] });
 	}
