@@ -7,7 +7,7 @@ import { MiyuClient } from './lib/structures/MiyuClient';
 import spotifyPlugin from 'kazagumo-spotify';
 import { container } from '@sapphire/framework';
 import type { ColorResolvable } from 'discord.js';
-import Genius from 'genius-lyrics';
+import { Client } from 'genius-lyrics';
 
 const Nodes = [
 	{
@@ -50,7 +50,7 @@ const main = async () => {
 	try {
 		container.embedColor = process.env.EMBED_COLOR as ColorResolvable;
 		container.kazagumo = kazagumo;
-		container.lyrics = new Genius.Client();
+		container.lyrics = new Client();
 		client.logger.info('Logging in');
 		await client.login(process.env.TOKEN as string);
 		client.logger.info('logged in');
