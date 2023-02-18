@@ -86,8 +86,6 @@ export class PlayCommand extends Command {
 		if (result.type === 'PLAYLIST') for (let track of result.tracks) player.queue.add(track);
 		else player.queue.add(result.tracks[0]);
 
-		console.log(result.tracks[0]);
-
 		if (!player.playing && !player.paused) player.play();
 
 		const embed = new EmbedBuilder()
