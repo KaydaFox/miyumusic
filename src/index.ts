@@ -60,7 +60,7 @@ kazagumo.shoukaku.on('close', (name, code, reason) => console.warn(`Lavalink ${n
 
 const main = async () => {
 	try {
-		container.embedColor = process.env.EMBED_COLOR as ColorResolvable;
+		container.embedColor = process.env.EMBED_COLOUR as ColorResolvable;
 		container.kazagumo = kazagumo;
 		container.lyrics = new Client();
 		client.logger.info('Logging in');
