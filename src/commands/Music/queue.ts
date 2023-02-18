@@ -57,27 +57,10 @@ export class QueueCommand extends Command {
 			fetchReply: true
 		});
 
-		let totalLength = 0;
+		let totalLength = queue.current?.length || 0;
 		queue.forEach((track) => {
 			totalLength += track.length || 0;
 		});
-
-		if (queue.length < 10) {
-			const embed = new EmbedBuilder()
-				.setTitle('Queue')
-				.setDescription(
-					`${previousTrack ? `**Previously played:**\n${previousTrack.title} by ${previousTrack.author}` : ''}\n
-          ${currentTrack ? `**Currently playing:**\n${currentTrack.title} by ${currentTrack.author}` : 'No song is currently playing'}\n`
-				)
-				.setFooter({ text: `Total length: ${formatTime(totalLength)}` })
-				.setColor(process.env.EMBED_COLOUR as ColorResolvable);
-
-			queue.forEach((track, index) => {
-				embed.addFields({ name: `Track ${index + 1}`, value: track.title });
-			});
-
-			return interaction.editReply({ embeds: [embed] });
-		}
 
 		const mappedQueue = queue.map((track, index) => {
 			return {
@@ -112,7 +95,7 @@ export class QueueCommand extends Command {
 						chunk.map((track) => {
 							return {
 								name: `${track.index} - ${track.title} by ${track.author}`,
-								value: `[link from ${track.sourceName}](${track.url})\nRequested by ${track.requester} - \`${track.length}\``
+								value: `[link from ${track.sourceName}](${track.uri})\nRequested by ${track.requester} - \`${track.length}\``
 							};
 						})
 					)
