@@ -15,6 +15,10 @@ export class PlayerExceptionListener extends Listener<typeof Events.PlayerExcept
 
 		console.log(data); //temporary, atleast until i know some things that `data` could be
 
+		if (data.exception.message) {
+			return textChannel.send({ content: data.exception.message });
+		}
+
 		return textChannel.send('An error occurred while playing this song');
 	}
 }
