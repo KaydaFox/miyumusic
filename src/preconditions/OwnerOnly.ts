@@ -1,8 +1,7 @@
 import { AllFlowsPrecondition } from '@sapphire/framework';
-import { envParseString } from '@skyra/env-utilities';
 import type { CommandInteraction, ContextMenuCommandInteraction, Message, Snowflake } from 'discord.js';
 
-const OWNERS = envParseString('OWNER');
+const OWNERS: string = process.env.OWNER as string;
 
 export class UserPrecondition extends AllFlowsPrecondition {
 	#message = 'This command can only be used by the owner.';
