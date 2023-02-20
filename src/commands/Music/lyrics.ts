@@ -45,7 +45,7 @@ export class LyricsCommand extends Command {
 				.setDescription(lyrics)
 				.setThumbnail(firstResult.thumbnail)
 				.setFooter({ text: `Powered by Genius. Please note: not all lyrics or searches are accurate.` })
-				.setColor(this.container.embedColor || process.env.EMBED_COLOUR)
+				.setColor(this.container.embedColor)
 				.setTimestamp();
 
 			return interaction.editReply({ embeds: [embed] });
