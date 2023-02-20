@@ -65,7 +65,7 @@ export class StatsCommand extends Command {
 				},
 				{
 					name: 'Bot',
-					value: `**JS:** v${version}\n**Runtime:** ${process.version}\n**Uptime:** <t:${Math.round(client.readyTimestamp / 1000)}:R>`,
+					value: `**JS:** v${version}\n**Runtime:** ${process.version}\n**Uptime:** <t:${Math.round((client.readyAt as any) / 1000)}:R>`,
 					inline: true
 				},
 				{
