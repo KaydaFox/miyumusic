@@ -14,7 +14,8 @@ export default class SkipToCommand extends Command {
 			builder
 				.setName(this.name)
 				.setDescription(this.description)
-				.addIntegerOption((option) => option.setName('song').setDescription('The song number to skip to').setRequired(true));
+				.addIntegerOption((option) => option.setName('song').setDescription('The song number to skip to').setRequired(true))
+				.addBooleanOption((option) => option.setName('keep-skipped').setDescription('Keep the skipped songs in the queue?'));
 		});
 	}
 
@@ -24,6 +25,7 @@ export default class SkipToCommand extends Command {
 
 	private async skipTo(interaction: Command.ChatInputCommandInteraction) {
 		const song: number = interaction.options.getInteger('song') as number;
+		const keepSkipped = interaction.options.getBoolean('keep-skipped') || false;
 
 		const { kazagumo } = this.container;
 		const player = kazagumo.players.get(interaction.guildId as string) ?? null;
@@ -33,10 +35,18 @@ export default class SkipToCommand extends Command {
 		const queue = player.queue;
 		if (!queue || !queue.length) return interaction.reply({ content: 'I am not playing anything!', ephemeral: true });
 		if (song! > queue.length) return interaction.reply({ content: 'That song is not in the queue!', ephemeral: true });
-
-		queue.unshift(queue[song! - 1]);
-
-		player.skip();
+		if (keepSkipped) {
+			queue.unshift(queue[song! - 1]);
+			queue.remove(song!);
+			player.skip();
+			// ^ will skip to the song,
+		} else {
+			for (let i = 1; i < song!; i++) {
+				queue.remove(0);
+			}
+			player.skip();
+			// bit of an inefficient way of doing it, but it works
+		}
 
 		return interaction.reply({ content: `Skipped to song ${song}` });
 	}
