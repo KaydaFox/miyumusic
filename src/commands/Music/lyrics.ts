@@ -29,8 +29,7 @@ export class LyricsCommand extends Command {
 		const kazagumo = this.container.kazagumo;
 		const player = (await kazagumo.players.get(interaction.guildId!)) ?? null;
 		const song = interaction.options.getString('song', false) || player?.queue.current?.title + ' ' + player?.queue.current?.author || null;
-
-		if (!song) return interaction.editReply({ content: 'Please specify a song to find lyrics for' });
+		if (!song || song === 'undefined undefined') return interaction.editReply({ content: 'Please specify a song to find lyrics for' });
 
 		try {
 			const results = await this.container.lyrics.songs.search(song);
