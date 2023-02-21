@@ -31,7 +31,8 @@ export class LoopCommand extends Command {
 							value: 'queue'
 						}
 					)
-				);
+				)
+				.setDMPermission(false);
 		});
 	}
 

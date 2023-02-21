@@ -12,14 +12,9 @@ import type { MiyuCommand } from '../../lib/structures/Command';
 })
 export class ShuffleCommand extends Command {
 	public override registerApplicationCommands(registry: Command.Registry) {
-		registry.registerChatInputCommand(
-			(builder) => {
-				builder.setName(this.name).setDescription(this.description);
-			},
-			{
-				idHints: ['1076525573641359360']
-			}
-		);
+		registry.registerChatInputCommand((builder) => {
+			builder.setName(this.name).setDescription(this.description).setDMPermission(false);
+		});
 	}
 
 	public async chatInputRun(interaction: Command.ChatInputCommandInteraction) {

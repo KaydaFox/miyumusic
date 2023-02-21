@@ -15,7 +15,8 @@ export default class SeekCommand extends Command {
 			builder
 				.setName(this.name)
 				.setDescription(this.description)
-				.addStringOption((option) => option.setName('time').setDescription('The time to seek to').setRequired(true));
+				.addStringOption((option) => option.setName('time').setDescription('The time to seek to').setRequired(true))
+				.setDMPermission(false);
 		});
 	}
 

@@ -19,7 +19,8 @@ export class VolumeCommand extends Command {
 				.setDescription(this.description)
 				.addIntegerOption((option) =>
 					option.setName('volume').setDescription('The volume to set the player to').setMaxValue(100).setMinValue(0)
-				);
+				)
+				.setDMPermission(false);
 		});
 	}
 

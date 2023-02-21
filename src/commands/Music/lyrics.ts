@@ -16,7 +16,8 @@ export class LyricsCommand extends Command {
 			builder
 				.setName(this.name)
 				.setDescription(this.description)
-				.addStringOption((option) => option.setName('song').setDescription('The song to find lyrics for').setRequired(false));
+				.addStringOption((option) => option.setName('song').setDescription('The song to find lyrics for').setRequired(false))
+				.setDMPermission(false);
 		});
 	}
 

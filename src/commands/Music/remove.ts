@@ -15,7 +15,8 @@ export class RemoveCommand extends Command {
 			builder
 				.setName(this.name)
 				.setDescription(this.description)
-				.addIntegerOption((option) => option.setName('song').setDescription('The song number to remove from the queue').setRequired(true));
+				.addIntegerOption((option) => option.setName('song').setDescription('The song number to remove from the queue').setRequired(true))
+				.setDMPermission(false);
 		});
 	}
 

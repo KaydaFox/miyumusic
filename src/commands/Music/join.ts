@@ -15,7 +15,8 @@ export class JoinCommand extends Command {
 	public override registerApplicationCommands(registry: Command.Registry) {
 		registry.registerChatInputCommand({
 			name: this.name,
-			description: this.description
+			description: this.description,
+			dmPermission: false
 		});
 	}
 

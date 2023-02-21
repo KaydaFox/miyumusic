@@ -28,7 +28,8 @@ export class PlayCommand extends Command {
 							{ name: 'SoundCloud', value: 'soundcloud' },
 							{ name: 'Spotify', value: 'spotify' }
 						)
-				);
+				)
+				.setDMPermission(false);
 		});
 	}
 

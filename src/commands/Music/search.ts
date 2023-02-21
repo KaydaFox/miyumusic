@@ -16,7 +16,8 @@ export default class SearchCommand extends Command {
 			builder
 				.setName(this.name)
 				.setDescription(this.description)
-				.addStringOption((option) => option.setName('song').setDescription('The song to search for').setRequired(true));
+				.addStringOption((option) => option.setName('song').setDescription('The song to search for').setRequired(true))
+				.setDMPermission(false);
 		});
 	}
 

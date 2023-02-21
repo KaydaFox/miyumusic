@@ -15,7 +15,8 @@ export default class SkipToCommand extends Command {
 				.setName(this.name)
 				.setDescription(this.description)
 				.addIntegerOption((option) => option.setName('song').setDescription('The song number to skip to').setRequired(true))
-				.addBooleanOption((option) => option.setName('keep-skipped').setDescription('Keep the skipped songs in the queue?'));
+				.addBooleanOption((option) => option.setName('keep-skipped').setDescription('Keep the skipped songs in the queue?'))
+				.setDMPermission(false);
 		});
 	}
 
