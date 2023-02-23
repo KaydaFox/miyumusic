@@ -36,7 +36,6 @@ export class PlayCommand extends Command {
 	public async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
 		const song = interaction.options.getString('song') ?? '';
 		const engine = interaction.options.getString('engine') ?? 'youtube';
-		await interaction.deferReply();
 		return this.play(interaction, song, engine);
 	}
 
@@ -44,15 +43,17 @@ export class PlayCommand extends Command {
 		const kazagumo = this.container.kazagumo;
 		const voiceChannel = interaction.member instanceof GuildMember ? interaction.member.voice.channel : null;
 
-		if (!song) interaction.reply({ content: 'Please provide a song to play', ephemeral: true });
+		if (!song) return interaction.reply({ content: 'Please provide a song to play', ephemeral: true });
 
-		if (!voiceChannel) interaction.editReply({ content: 'You need to be in a voice channel to play music!' });
+		if (!voiceChannel) return interaction.reply({ content: 'You need to be in a voice channel to play music!' });
 
-		if (!voiceChannel || !voiceChannel.joinable)
+		if (!voiceChannel.joinable)
 			return interaction.reply({
 				content: 'I cannot join your voice channel, make sure I have the proper permissions!',
 				ephemeral: true
 			});
+
+		await interaction.deferReply();
 
 		const guildSettings = await this.container.db.guild.findUnique({ where: { guildId: interaction.guildId ?? '' } });
 
