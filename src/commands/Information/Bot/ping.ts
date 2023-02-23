@@ -1,10 +1,9 @@
 import { ApplyOptions } from '@sapphire/decorators';
 import { Command } from '@sapphire/framework';
-import { Message, EmbedBuilder } from 'discord.js';
+import { EmbedBuilder } from 'discord.js';
 import type { MiyuCommand } from '../../../lib/structures/Command';
 import type Discord from 'discord.js';
 import { codeBlock } from '@sapphire/utilities';
-import { reply } from '@sapphire/plugin-editable-commands';
 
 @ApplyOptions<MiyuCommand.Options>({
 	description: 'Displays the bot and API latency',

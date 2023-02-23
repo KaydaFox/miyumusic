@@ -1,6 +1,6 @@
 import { ApplyOptions } from '@sapphire/decorators';
-import { Args, Command } from '@sapphire/framework';
-import { EmbedBuilder, GuildMember, Message } from 'discord.js';
+import { Command } from '@sapphire/framework';
+import { EmbedBuilder, GuildMember } from 'discord.js';
 import type { MiyuCommand } from '../../lib/structures/Command';
 import type Discord from 'discord.js';
 

@@ -1,9 +1,8 @@
 import { ApplyOptions } from '@sapphire/decorators';
 import { Command, version } from '@sapphire/framework';
 import type { MiyuCommand } from '../../../lib/structures/Command';
-import { EmbedBuilder, Guild, Message } from 'discord.js';
+import { EmbedBuilder, Guild } from 'discord.js';
 import { getInfo } from 'discord-hybrid-sharding';
-import { reply } from '@sapphire/plugin-editable-commands';
 import type Discord from 'discord.js';
 
 @ApplyOptions<MiyuCommand.Options>({
