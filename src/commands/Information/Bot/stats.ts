@@ -1,9 +1,8 @@
 import { ApplyOptions } from '@sapphire/decorators';
 import { Command, version } from '@sapphire/framework';
 import type { MiyuCommand } from '../../../lib/structures/Command';
-import { EmbedBuilder, Guild, Message } from 'discord.js';
+import { EmbedBuilder, Guild } from 'discord.js';
 import { getInfo } from 'discord-hybrid-sharding';
-import { reply } from '@sapphire/plugin-editable-commands';
 import type Discord from 'discord.js';
 
 @ApplyOptions<MiyuCommand.Options>({
@@ -21,10 +20,6 @@ export class StatsCommand extends Command {
 		});
 	}
 
-	public async messageRun(message: Message) {
-		return this.sendStats(message);
-	}
-
 	public async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
 		return this.sendStats(interaction);
 	}
@@ -40,7 +35,7 @@ export class StatsCommand extends Command {
 		return await Promise.all([totalGuildCount, totalMemberCount]);
 	}
 
-	private async sendStats(interactionOrMessage: Message | Command.ChatInputCommandInteraction, guild: Guild | null = null) {
+	private async sendStats(interaction: Command.ChatInputCommandInteraction, guild: Guild | null = null) {
 		const { client, kazagumo } = this.container;
 		const [totalGuildCount, totalMemberCount] = await this.fetchUsersAndGuils();
 
@@ -48,7 +43,7 @@ export class StatsCommand extends Command {
 		const clusterId = getInfo().CLUSTER;
 		const totalShards = getInfo().TOTAL_SHARDS;
 		const totalClusters = getInfo().CLUSTER_COUNT;
-		const player = kazagumo.players.get(interactionOrMessage.guildId as string) ?? null;
+		const player = kazagumo.players.get(interaction.guildId as string) ?? null;
 		const voiceConnections = 1;
 
 		const botCpuUsage = Math.round(process.cpuUsage().user / 1024 / 1024);
@@ -97,10 +92,6 @@ export class StatsCommand extends Command {
 				iconURL: `https://cdn.discordapp.com/avatars/717329527696785408/653266c08f010ff73ff230d72a5d5279.webp?size=128`
 			});
 
-		if (interactionOrMessage instanceof Message) {
-			return reply(interactionOrMessage, { embeds: [embed] });
-		}
-
-		return interactionOrMessage.reply({ embeds: [embed] });
+		return interaction.reply({ embeds: [embed] });
 	}
 }
