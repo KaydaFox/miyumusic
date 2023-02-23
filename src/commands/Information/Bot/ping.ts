@@ -20,21 +20,14 @@ export class PingCommand extends Command {
 		});
 	}
 
-	public async messageRun(message: Message) {
-		return this.sendPing(message);
-	}
-
 	public async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
 		return this.sendPing(interaction);
 	}
 
-	private async sendPing(interactionOrMessage: Message | Command.ChatInputCommandInteraction) {
+	private async sendPing(interaction: Command.ChatInputCommandInteraction) {
 		const initialEmbed = new EmbedBuilder().setDescription('Pinging...').setColor(process.env.EMBED_COLOUR as Discord.ColorResolvable);
 
-		const pingMessage =
-			interactionOrMessage instanceof Message
-				? await reply(interactionOrMessage, { embeds: [initialEmbed] })
-				: await interactionOrMessage.reply({ embeds: [initialEmbed], fetchReply: true });
+		const pingMessage = await interaction.reply({ embeds: [initialEmbed], fetchReply: true });
 
 		const finalEmbed = new EmbedBuilder()
 			.addFields(
@@ -45,17 +38,13 @@ export class PingCommand extends Command {
 				},
 				{
 					name: 'API Latency',
-					value: `${codeBlock('ini', `[ ${pingMessage.createdTimestamp - interactionOrMessage.createdTimestamp}ms ]`)}`,
+					value: `${codeBlock('ini', `[ ${pingMessage.createdTimestamp - interaction.createdTimestamp}ms ]`)}`,
 					inline: true
 				}
 			)
 			.setColor(process.env.EMBED_COLOUR as Discord.ColorResolvable);
 
-		if (interactionOrMessage instanceof Message) {
-			return pingMessage.edit({ embeds: [finalEmbed] });
-		}
-
-		return interactionOrMessage.editReply({
+		return interaction.editReply({
 			embeds: [finalEmbed]
 		});
 	}
