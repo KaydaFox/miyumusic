@@ -9,7 +9,8 @@ import { MiyuCommand } from '../../lib/structures/Command';
 	usage: '>defaultvolume <volume>',
 	examples: ['>defaultvolume 100'],
 	preconditions: ['GuildOnly'],
-	name: 'defaultvolume'
+	name: 'defaultvolume',
+	requiredUserPermissions: [PermissionFlagsBits.ManageGuild]
 })
 export class DefaultVolumeCommand extends MiyuCommand {
 	public override registerApplicationCommands(registry: Command.Registry) {

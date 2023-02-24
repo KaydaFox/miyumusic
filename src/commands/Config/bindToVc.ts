@@ -9,7 +9,8 @@ import { MiyuCommand } from '../../lib/structures/Command';
 	usage: '>bindtovc',
 	examples: ['>bindtovc', '>bindtovc true'],
 	preconditions: ['GuildOnly'],
-	name: 'bindtovc'
+	name: 'bindtovc',
+	requiredUserPermissions: [PermissionFlagsBits.ManageGuild]
 })
 export default class BindToVcCommand extends MiyuCommand {
 	public override registerApplicationCommands(registry: Command.Registry) {
