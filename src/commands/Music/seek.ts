@@ -1,7 +1,7 @@
 import { ApplyOptions } from '@sapphire/decorators';
-import { Command } from '@sapphire/framework';
+import type { Command } from '@sapphire/framework';
 import { Duration } from '@sapphire/time-utilities';
-import type { MiyuCommand } from '../../lib/structures/Command';
+import { MiyuCommand } from '../../lib/structures/Command';
 
 @ApplyOptions<MiyuCommand.Options>({
 	description: 'Seek through the song',
@@ -9,7 +9,7 @@ import type { MiyuCommand } from '../../lib/structures/Command';
 	usage: '>seek <time>',
 	examples: ['>seek 1m30s']
 })
-export default class SeekCommand extends Command {
+export default class SeekCommand extends MiyuCommand {
 	public override registerApplicationCommands(registry: Command.Registry) {
 		registry.registerChatInputCommand((builder) => {
 			builder

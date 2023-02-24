@@ -1,7 +1,7 @@
 import { ApplyOptions } from '@sapphire/decorators';
-import { Command } from '@sapphire/framework';
+import type { Command } from '@sapphire/framework';
 import { ColorResolvable, EmbedBuilder } from 'discord.js';
-import type { MiyuCommand } from '../../lib/structures/Command';
+import { MiyuCommand } from '../../lib/structures/Command';
 
 @ApplyOptions<MiyuCommand.Options>({
 	description: 'Set the players loop mode',
@@ -10,7 +10,7 @@ import type { MiyuCommand } from '../../lib/structures/Command';
 	examples: ['+loop', '+loop track'],
 	preconditions: ['GuildOnly']
 })
-export class LoopCommand extends Command {
+export class LoopCommand extends MiyuCommand {
 	public override registerApplicationCommands(registry: Command.Registry) {
 		registry.registerChatInputCommand((builder) => {
 			builder

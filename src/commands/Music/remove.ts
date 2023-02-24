@@ -1,6 +1,6 @@
 import { ApplyOptions } from '@sapphire/decorators';
-import { Command } from '@sapphire/framework';
-import type { MiyuCommand } from '../../lib/structures/Command';
+import type { Command } from '@sapphire/framework';
+import { MiyuCommand } from '../../lib/structures/Command';
 
 @ApplyOptions<MiyuCommand.Options>({
 	description: 'Remove a song from the queue',
@@ -9,7 +9,7 @@ import type { MiyuCommand } from '../../lib/structures/Command';
 	examples: ['+remove 1'],
 	preconditions: ['GuildOnly']
 })
-export class RemoveCommand extends Command {
+export class RemoveCommand extends MiyuCommand {
 	public override registerApplicationCommands(registry: Command.Registry) {
 		registry.registerChatInputCommand((builder) => {
 			builder

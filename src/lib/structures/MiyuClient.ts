@@ -17,7 +17,7 @@ export class MiyuClient extends SapphireClient {
 			},
 			shards: getInfo().SHARD_LIST,
 			shardCount: getInfo().TOTAL_SHARDS,
-			intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildVoiceStates],
+			intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildVoiceStates, GatewayIntentBits.GuildMessages],
 			typing: true,
 			partials: [Partials.Channel],
 			loadMessageCommandListeners: true,

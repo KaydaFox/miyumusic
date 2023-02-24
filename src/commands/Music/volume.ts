@@ -1,7 +1,7 @@
 import { ApplyOptions } from '@sapphire/decorators';
-import { Command } from '@sapphire/framework';
+import type { Command } from '@sapphire/framework';
 import { EmbedBuilder } from 'discord.js';
-import type { MiyuCommand } from '../../lib/structures/Command';
+import { MiyuCommand } from '../../lib/structures/Command';
 
 @ApplyOptions<MiyuCommand.Options>({
 	description: 'Show and change the volume of the player',
@@ -11,7 +11,7 @@ import type { MiyuCommand } from '../../lib/structures/Command';
 	examples: ['>volume', '>volume 50'],
 	preconditions: ['GuildOnly']
 })
-export class VolumeCommand extends Command {
+export class VolumeCommand extends MiyuCommand {
 	public override registerApplicationCommands(registry: Command.Registry) {
 		registry.registerChatInputCommand((builder) => {
 			builder

@@ -1,8 +1,8 @@
 import { ApplyOptions } from '@sapphire/decorators';
-import { Command } from '@sapphire/framework';
+import type { Command } from '@sapphire/framework';
 import { ActionRowBuilder, ButtonBuilder, ButtonInteraction, ButtonStyle, EmbedBuilder, GuildMember } from 'discord.js';
 import formatTime from '../../lib/formatTime';
-import type { MiyuCommand } from '../../lib/structures/Command';
+import { MiyuCommand } from '../../lib/structures/Command';
 
 @ApplyOptions<MiyuCommand.Options>({
 	description: 'Search for some songs',
@@ -10,7 +10,7 @@ import type { MiyuCommand } from '../../lib/structures/Command';
 	usage: '>search <query>',
 	examples: ['>search never gonna give you up']
 })
-export default class SearchCommand extends Command {
+export default class SearchCommand extends MiyuCommand {
 	public override registerApplicationCommands(registry: Command.Registry) {
 		registry.registerChatInputCommand((builder) => {
 			builder
