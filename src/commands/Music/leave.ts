@@ -1,7 +1,7 @@
 import { ApplyOptions } from '@sapphire/decorators';
-import { Command } from '@sapphire/framework';
+import type { Command } from '@sapphire/framework';
 import { GuildMember, EmbedBuilder } from 'discord.js';
-import type { MiyuCommand } from '../../lib/structures/Command';
+import { MiyuCommand } from '../../lib/structures/Command';
 import type Discord from 'discord.js';
 
 @ApplyOptions<MiyuCommand.Options>({
@@ -11,7 +11,7 @@ import type Discord from 'discord.js';
 	examples: ['>join'],
 	preconditions: ['GuildOnly']
 })
-export class LeaveCommand extends Command {
+export class LeaveCommand extends MiyuCommand {
 	public override registerApplicationCommands(registry: Command.Registry) {
 		registry.registerChatInputCommand({
 			name: this.name,

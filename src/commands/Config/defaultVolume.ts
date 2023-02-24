@@ -1,7 +1,7 @@
 import { ApplyOptions } from '@sapphire/decorators';
-import { Command } from '@sapphire/framework';
+import type { Command } from '@sapphire/framework';
 import { PermissionFlagsBits } from 'discord.js';
-import type { MiyuCommand } from '../../lib/structures/Command';
+import { MiyuCommand } from '../../lib/structures/Command';
 
 @ApplyOptions<MiyuCommand.Options>({
 	description: "Set's the default volume for the bot when a player is created",
@@ -11,7 +11,7 @@ import type { MiyuCommand } from '../../lib/structures/Command';
 	preconditions: ['GuildOnly'],
 	name: 'defaultvolume'
 })
-export default class DefaultVolumeCommand extends Command {
+export class DefaultVolumeCommand extends MiyuCommand {
 	public override registerApplicationCommands(registry: Command.Registry) {
 		registry.registerChatInputCommand((builder) => {
 			builder

@@ -1,7 +1,7 @@
 import { ApplyOptions } from '@sapphire/decorators';
-import { Command } from '@sapphire/framework';
+import type { Command } from '@sapphire/framework';
 import { EmbedBuilder } from 'discord.js';
-import type { MiyuCommand } from '../../lib/structures/Command';
+import { MiyuCommand } from '../../lib/structures/Command';
 
 @ApplyOptions<MiyuCommand.Options>({
 	description: 'Find lyrics for the current song or a song you specify',
@@ -10,7 +10,7 @@ import type { MiyuCommand } from '../../lib/structures/Command';
 	examples: ['+lyrics', '+lyrics the legend of the black shawarma'],
 	preconditions: ['GuildOnly']
 })
-export class LyricsCommand extends Command {
+export class LyricsCommand extends MiyuCommand {
 	public override registerApplicationCommands(registry: Command.Registry) {
 		registry.registerChatInputCommand((builder) => {
 			builder

@@ -1,7 +1,7 @@
 import { ApplyOptions } from '@sapphire/decorators';
-import { Command } from '@sapphire/framework';
+import type { Command } from '@sapphire/framework';
 import { PermissionFlagsBits } from 'discord.js';
-import type { MiyuCommand } from '../../lib/structures/Command';
+import { MiyuCommand } from '../../lib/structures/Command';
 
 @ApplyOptions<MiyuCommand.Options>({
 	description: "Use the VCs text channel as the bot's text channel",
@@ -11,7 +11,7 @@ import type { MiyuCommand } from '../../lib/structures/Command';
 	preconditions: ['GuildOnly'],
 	name: 'bindtovc'
 })
-export default class BindToVcCommand extends Command {
+export default class BindToVcCommand extends MiyuCommand {
 	public override registerApplicationCommands(registry: Command.Registry) {
 		registry.registerChatInputCommand((builder) => {
 			builder

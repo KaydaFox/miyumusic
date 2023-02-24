@@ -1,6 +1,6 @@
 import { ApplyOptions } from '@sapphire/decorators';
-import { Command } from '@sapphire/framework';
-import type { MiyuCommand } from '../../lib/structures/Command';
+import type { Command } from '@sapphire/framework';
+import { MiyuCommand } from '../../lib/structures/Command';
 
 @ApplyOptions<MiyuCommand.Options>({
 	description: 'Skips to a specific song in the queue',
@@ -8,7 +8,7 @@ import type { MiyuCommand } from '../../lib/structures/Command';
 	usage: '>skipto <song number>',
 	examples: ['>skipto 2']
 })
-export default class SkipToCommand extends Command {
+export default class SkipToCommand extends MiyuCommand {
 	public override registerApplicationCommands(registry: Command.Registry) {
 		registry.registerChatInputCommand((builder) => {
 			builder

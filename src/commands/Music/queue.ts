@@ -1,10 +1,10 @@
 import { ApplyOptions } from '@sapphire/decorators';
 import { PaginatedMessage } from '@sapphire/discord.js-utilities';
-import { Command } from '@sapphire/framework';
+import type { Command } from '@sapphire/framework';
 import { ColorResolvable, EmbedBuilder } from 'discord.js';
 import createChunks from '../../lib/createChunks';
 import formatTime from '../../lib/formatTime';
-import type { MiyuCommand } from '../../lib/structures/Command';
+import { MiyuCommand } from '../../lib/structures/Command';
 
 @ApplyOptions<MiyuCommand.Options>({
 	description: 'View the current queue',
@@ -13,7 +13,7 @@ import type { MiyuCommand } from '../../lib/structures/Command';
 	examples: ['+queue'],
 	preconditions: ['GuildOnly']
 })
-export class QueueCommand extends Command {
+export class QueueCommand extends MiyuCommand {
 	public override registerApplicationCommands(registry: Command.Registry) {
 		registry.registerChatInputCommand((builder) => {
 			builder.setName(this.name).setDescription(this.description).setDMPermission(false);

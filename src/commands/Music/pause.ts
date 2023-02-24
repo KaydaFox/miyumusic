@@ -1,6 +1,6 @@
 import { ApplyOptions } from '@sapphire/decorators';
-import { Command } from '@sapphire/framework';
-import type { MiyuCommand } from '../../lib/structures/Command';
+import type { Command } from '@sapphire/framework';
+import { MiyuCommand } from '../../lib/structures/Command';
 
 @ApplyOptions<MiyuCommand.Options>({
 	description: 'Pause and resume the player',
@@ -9,7 +9,7 @@ import type { MiyuCommand } from '../../lib/structures/Command';
 	examples: ['+pause'],
 	preconditions: ['GuildOnly']
 })
-export class PauseCommand extends Command {
+export class PauseCommand extends MiyuCommand {
 	public override registerApplicationCommands(registry: Command.Registry) {
 		registry.registerChatInputCommand((builder) => {
 			builder.setName(this.name).setDescription(this.description).setDMPermission(false);

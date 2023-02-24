@@ -1,7 +1,7 @@
 import { ApplyOptions } from '@sapphire/decorators';
-import { Command } from '@sapphire/framework';
+import type { Command } from '@sapphire/framework';
 import { EmbedBuilder } from 'discord.js';
-import type { MiyuCommand } from '../../lib/structures/Command';
+import { MiyuCommand } from '../../lib/structures/Command';
 
 @ApplyOptions<MiyuCommand.Options>({
 	description: 'Sends the current song to your DMs',
@@ -10,7 +10,7 @@ import type { MiyuCommand } from '../../lib/structures/Command';
 	examples: ['+save'],
 	preconditions: ['GuildOnly']
 })
-export class SaveCommand extends Command {
+export class SaveCommand extends MiyuCommand {
 	public override registerApplicationCommands(registry: Command.Registry) {
 		registry.registerChatInputCommand((builder) => {
 			builder.setName(this.name).setDescription(this.description).setDMPermission(false);

@@ -1,9 +1,8 @@
 import { ApplyOptions } from '@sapphire/decorators';
 import { Command, version } from '@sapphire/framework';
-import type { MiyuCommand } from '../../../lib/structures/Command';
+import { MiyuCommand } from '../../../lib/structures/Command';
 import { EmbedBuilder, Guild } from 'discord.js';
 import { getInfo } from 'discord-hybrid-sharding';
-import type Discord from 'discord.js';
 
 @ApplyOptions<MiyuCommand.Options>({
 	description: 'Get some basic stats about the bot',
@@ -12,7 +11,7 @@ import type Discord from 'discord.js';
 	examples: ['>stats'],
 	enabled: true
 })
-export class StatsCommand extends Command {
+export class StatsCommand extends MiyuCommand {
 	public override registerApplicationCommands(registry: Command.Registry) {
 		registry.registerChatInputCommand({
 			name: this.name,
@@ -86,7 +85,7 @@ export class StatsCommand extends Command {
 					inline: true
 				}
 			)
-			.setColor(process.env.EMBED_COLOUR as Discord.ColorResolvable)
+			.setColor(this.container.embedColor)
 			.setFooter({
 				text: `© StarnightFox - 2022 • Shard #${shardId | 0}`,
 				iconURL: `https://cdn.discordapp.com/avatars/717329527696785408/653266c08f010ff73ff230d72a5d5279.webp?size=128`

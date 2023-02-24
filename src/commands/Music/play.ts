@@ -1,7 +1,7 @@
 import { ApplyOptions } from '@sapphire/decorators';
-import { Command } from '@sapphire/framework';
+import type { Command } from '@sapphire/framework';
 import { EmbedBuilder, GuildMember } from 'discord.js';
-import type { MiyuCommand } from '../../lib/structures/Command';
+import { MiyuCommand } from '../../lib/structures/Command';
 import type Discord from 'discord.js';
 
 @ApplyOptions<MiyuCommand.Options>({
@@ -11,7 +11,7 @@ import type Discord from 'discord.js';
 	examples: ['>play the legend of the black shawarma'],
 	preconditions: ['GuildOnly']
 })
-export class PlayCommand extends Command {
+export class PlayCommand extends MiyuCommand {
 	public override registerApplicationCommands(registry: Command.Registry) {
 		registry.registerChatInputCommand((builder) => {
 			builder

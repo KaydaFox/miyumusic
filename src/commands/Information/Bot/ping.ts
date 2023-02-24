@@ -1,17 +1,17 @@
 import { ApplyOptions } from '@sapphire/decorators';
-import { Command } from '@sapphire/framework';
+import type { Command } from '@sapphire/framework';
 import { EmbedBuilder } from 'discord.js';
-import type { MiyuCommand } from '../../../lib/structures/Command';
+import { MiyuCommand } from '../../../lib/structures/Command';
 import type Discord from 'discord.js';
 import { codeBlock } from '@sapphire/utilities';
 
 @ApplyOptions<MiyuCommand.Options>({
 	description: 'Displays the bot and API latency',
-	fullCategory: ['General'],
+	fullCategory: ['Information'],
 	usage: '>ping',
 	examples: ['>ping']
 })
-export class PingCommand extends Command {
+export class PingCommand extends MiyuCommand {
 	public override registerApplicationCommands(registry: Command.Registry) {
 		registry.registerChatInputCommand({
 			name: this.name,
