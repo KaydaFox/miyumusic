@@ -841,11 +841,11 @@ __metadata:
   linkType: hard
 
 "discord-hybrid-sharding@npm:^2.1.0":
-  version: 2.1.0
-  resolution: "discord-hybrid-sharding@npm:2.1.0"
+  version: 2.1.3
+  resolution: "discord-hybrid-sharding@npm:2.1.3"
   dependencies:
     node-fetch: ^2.6.7
-  checksum: 7a121a540e3cc0d1d21e7f9bd686af48ed579e7f4b070bd93cf582402ab2110280b16aaa4f3659112c70defa5a7fe8a9553aa11d4fcb776d4c14a26c62b90adf
+  checksum: 306f4d089a35f9d748d112f95f1c9ec0f9ecbc2cb6fcabee472f89c653b0fbeaf4b6fa384c20ad8b5819217e0d160f8903a11efee1554d3a09fe6274ef177edf
   languageName: node
   linkType: hard
 
